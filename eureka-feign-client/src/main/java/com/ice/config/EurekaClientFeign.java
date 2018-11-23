@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * Created by ice on 2018/11/16.
  */
-@FeignClient(value = "eureka-client",configuration = FeignConfig.class)
+@FeignClient(value = "eureka-client",configuration = FeignConfig.class,fallback = HiHystrix.class)
 public interface EurekaClientFeign {
 
     @GetMapping(value = "/hi")
