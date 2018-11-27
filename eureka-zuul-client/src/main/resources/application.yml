@@ -1,0 +1,25 @@
+server:
+  port: 5000
+spring:
+  application:
+    name: eureka-zuul-client
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8761/eureka,http://peer2:8762/eureka,http://peer3:8763/eureka
+    healthcheck:
+      enabled: true #注册中心健康检查
+  instance:
+    lease-renewal-interval-in-seconds: 2
+    lease-expiration-duration-in-seconds: 6
+zuul:
+  routes:
+    hiapi:
+      path: /hiapi/**
+      serviceId: eureka-client  #http://localhost:5000/hiapi/hi?name=test
+    ribbonapi:
+      path: /ribbonapi/**
+      serviceId: eureka-ribbon-client
+    feignapi:
+      path: /feignapi/**
+      serviceId: eureka-feign-client
