@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8000  #调用另外的config server服务
+      fail-fast: true
+      name: config-client
+      profile: dev
+  application:
+    name: config-client
+  profiles:
+    active: dev
